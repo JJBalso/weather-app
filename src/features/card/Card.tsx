@@ -1,32 +1,11 @@
 import { useEffect, useState } from "react";
+import { CardProps, Location } from "./card.models";
+import styles from './Card.module.css';
 
-
-
-
-interface CardProps {
-    locationName: string
-}
-
-interface Location {
-    coord: any,
-    weather : any[];
-    base : any;
-    main : any;
-    visibility : any;
-    wind : any;
-    clouds : any;
-    dt : any;
-    sys : any;
-    timezone : any;
-    id : any;
-    name : any;
-    cod : any;
-}
 
 function Card(props: CardProps){
 
-    const locationUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.locationName}&appid=753bf7675696927d1daa601c92d681df`
-
+    const locationUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.locationName}&appid=4acf3d4b947b0a3b88dc618a27d07a81`
 
     const [location, setLocation] = useState<Location>();
 
@@ -36,7 +15,10 @@ function Card(props: CardProps){
         .then((location: Location) => {
             setLocation(location)  
         })
-    }, []);    
+        .catch(error => {
+            console.log('Location Not Found')
+        })
+    }, [props.locationName]);    
 
     if(location){
 
@@ -44,7 +26,7 @@ function Card(props: CardProps){
             <div>{weather.description}</div>
         )
 
-        return <div>
+        return <div className={styles.cardContainer}>
             <h1>{location.name}</h1>
             {weatherDescription}
             <div>
@@ -52,6 +34,8 @@ function Card(props: CardProps){
                 <span> | </span>
                 <span>L: {location.main?.temp_min}º</span>
             </div>
+            <div>Humidity: {location.main?.humidity}</div>
+            <div>Wind: {location.wind?.speed}</div>
         </div>
     }else {
         return <div>Loading...</div>
