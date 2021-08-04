@@ -1,4 +1,4 @@
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useAppSelector } from '../../app/hooks';
 import { selectLocation } from '../locations/locations';
 
 import React from "react"
@@ -17,7 +17,7 @@ function Main(){
     const locations = useAppSelector(selectLocation);  
 
     const locationCards = locations.map(location => 
-        <Card locationName={location}></Card>
+        <Card key={location} locationName={location}></Card>
     )
 
     return  <React.Fragment>

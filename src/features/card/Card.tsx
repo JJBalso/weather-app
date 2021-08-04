@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { CardProps, Location } from "./card.models";
 import styles from './Card.module.css';
+import environment from '../../environments/environment.config'
 
 
-function Card(props: CardProps){
-
-    const locationUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.locationName}&appid=4acf3d4b947b0a3b88dc618a27d07a81`
+function Card(props: CardProps){  
 
     const [location, setLocation] = useState<Location>();
 
     useEffect(() => {
+        const locationUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.locationName}&appid=${environment.weatherApiKey}`
+
         fetch(locationUrl)
         .then(response => response.json())
         .then((location: Location) => {
@@ -23,7 +24,7 @@ function Card(props: CardProps){
     if(location){
 
         const weatherDescription = location.weather?.map(weather => 
-            <div>{weather.description}</div>
+            <div key={weather.id}>{weather.description}</div>
         )
 
         return <div className={styles.cardContainer}>
