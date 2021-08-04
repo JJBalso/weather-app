@@ -1,0 +1,17 @@
+.footer{
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #f3f3f3;
+    align-items: center;
+}
+
+.githubLogoContainer {
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+.githubLogo {
+    height: 25px;
+}

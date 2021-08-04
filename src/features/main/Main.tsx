@@ -8,6 +8,7 @@ import Header from "../header/Header"
 import Card from "../card/Card";
 
 import styles from './Main.module.css';
+import CardAdd from '../card-add/CardAdd';
 
 
 function Main(){
@@ -24,6 +25,7 @@ function Main(){
         <Header/>
         <div className={styles.cardWrapper}>
             {locationCards}
+            <CardAdd></CardAdd>
         </div>   
         <MediaQuery minWidth={767}>
             <Footer/>
