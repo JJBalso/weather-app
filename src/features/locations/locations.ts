@@ -16,16 +16,15 @@ export const locationsSlice = createSlice({
     // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
       addLocation: (state, action: PayloadAction<string>) => {
-        // Redux Toolkit allows us to write "mutating" logic in reducers. It
-        // doesn't actually mutate the state because it uses the Immer library,
-        // which detects changes to a "draft state" and produces a brand new
-        // immutable state based off those changes
         state.value = [...state.value, action.payload];
+      },
+      removeLocation: (state, action: PayloadAction<string>) => {
+        state.value = state.value.filter(location => location !== action.payload);
       },
     },    
 });
 
-export const { addLocation } = locationsSlice.actions;
+export const { addLocation, removeLocation } = locationsSlice.actions;
 
 export const selectLocation = (state: RootState) => state.locations.value;
 
