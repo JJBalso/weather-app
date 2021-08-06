@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-// import styles from './Card.module.css';
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { PlusCircleOutlined } from "@ant-design/icons";
+import { useState } from "react";
+import { useAppDispatch } from "../../app/hooks";
 import { addLocation } from "../locations/locations";
+import styles from './CardAdd.module.css';
 
 
 function CardAdd(){  
@@ -9,11 +10,7 @@ function CardAdd(){
     const dispatch = useAppDispatch();
 
     const [isAdding, setIsAdding] = useState(false);
-    const [locationName, setLocationName] = useState('')
-
-    function onAddClick() {
-        setIsAdding(true);
-    }
+    const [locationName, setLocationName] = useState('');    
 
     function submitLocation(event: any) {
         dispatch(addLocation(locationName));
@@ -24,28 +21,21 @@ function CardAdd(){
         setLocationName(event.target.value);
     }
 
-    useEffect(() => {
-        console.log(isAdding)
-    }, [isAdding]); 
-
-    useEffect(() => {
-        console.log(locationName)
-    }, [locationName]); 
-
-
     if(isAdding){
-        return  <form onSubmit={submitLocation}>
-            <label>
-                New Location:
+        return  <div className={styles.cardAddContainer}>
+            <h1 className={styles.cardAddTitle}>New Location</h1>  
+            <form onSubmit={submitLocation}>
                 <input type="text" value={locationName} onChange={onLocationChangeClick} />
-            </label>
-            <input type="submit" value="Submit" />
-        </form>
-
+                <input type="submit" value="Submit" className={styles.submitButton}/>
+            </form>
+        </div>
 
     } else {
-        return <div >
-            <button onClick={onAddClick}>+</button>
+        return <div className={styles.addButtonContainer}>
+            <PlusCircleOutlined 
+                title="Add Location"
+                className={styles.addButton}
+                onClick={() => setIsAdding(true)}/>            
         </div>
     }     
 

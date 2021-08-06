@@ -1,4 +1,57 @@
 .cardContainer{
     display: block;
-    background-color: lightblue;
+    background: #FFFFFF;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 100%;
+    color: #609EE7;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 20px;
+}
+
+.cardTitle{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.cardButton{
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.cardButton:hover{
+    color: red
+}
+
+.cardContainer > div {
+    padding: 5px;
+}
+
+.cardContainer > div > div{
+    padding: 5px;
+}
+
+.tempWidget {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 60px;
+    height: 120px;
+    margin: auto;
+    background: #609EE7;
+    border-radius: 120px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.tempText{
+    color: #fff;
+    font-size: 26px;
+    line-height: 50px;
+    height: 50px;
 }

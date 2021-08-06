@@ -5,3 +5,17 @@
   height: 100%;
   width: 100%;
 }
+
+/* Overrides */
+
+.carousel .control-dots li.dot {
+  background-color: #609EE7;
+}
+
+.carousel button.control-prev.control-arrow:before{
+  border-right-color: #609EE7;
+}
+
+.carousel button.control-next.control-arrow:before{
+  border-left-color: #609EE7;
+}

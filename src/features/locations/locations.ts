@@ -19,7 +19,7 @@ export const locationsSlice = createSlice({
         state.value = [...state.value, action.payload];
       },
       removeLocation: (state, action: PayloadAction<string>) => {
-        state.value = state.value.filter(location => location != action.payload);
+        state.value = state.value.filter(location => location !== action.payload);
       },
     },    
 });

@@ -1,5 +1,6 @@
 export interface CardProps {
-    locationName: string
+    locationName: string;
+    isSimple: boolean;
 }
 
 export interface Location {

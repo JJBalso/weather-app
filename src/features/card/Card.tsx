@@ -4,6 +4,7 @@ import styles from './Card.module.css';
 import environment from '../../environments/environment.config'
 import { useAppDispatch } from "../../app/hooks";
 import { removeLocation } from "../locations/locations";
+import { DeleteOutlined } from '@ant-design/icons';
 
 
 function Card(props: CardProps){  
@@ -24,7 +25,24 @@ function Card(props: CardProps){
         })
     }, [props.locationName]);    
 
+    
+
+     
+
     if(location){
+
+        let info = null;
+        if(!props.isSimple){
+            info = <div>
+                <div>
+                    <span>H: {location.main?.temp_max}º</span>
+                    <span> | </span>
+                    <span>L: {location.main?.temp_min}º</span>
+                </div>
+                <div>Humidity: {location.main?.humidity}%</div>
+                <div>Wind: {location.wind?.speed}m/s</div>
+            </div>
+        }
 
         let weatherImage = '';
         const weatherDescription = location.weather?.map(weather => {
@@ -34,20 +52,20 @@ function Card(props: CardProps){
         }) 
 
         return <div className={styles.cardContainer}>
-            <h1>{location.name}</h1>
+            <h1 className={styles.cardTitle}>
+                {location.name}
+                <span title="Remove" className={styles.cardButton} onClick={() => {dispatch(removeLocation(props.locationName))}}>
+                    <DeleteOutlined />
+                </span>                
+            </h1>
             {weatherDescription}
-            <div>
-                <div>{location.main?.temp}º</div>
-                <img src={weatherImage}/>
+            <div className={styles.tempWidget}>
+                <div className={styles.tempText}>
+                    {location.main ? Math.round(location.main.temp) : 0}º
+                </div>
+                <img alt="" src={weatherImage}/>
             </div>
-            <div>
-                <span>H: {location.main?.temp_max}º</span>
-                <span> | </span>
-                <span>L: {location.main?.temp_min}º</span>
-            </div>
-            <div>Humidity: {location.main?.humidity}%</div>
-            <div>Wind: {location.wind?.speed}m/s</div>
-            <button onClick={() => {dispatch(removeLocation(props.locationName))}}>x</button>
+            {info}
         </div>
     }else {
         return <div>Loading...</div>
